@@ -12,11 +12,6 @@ export class ClientesService {
         return clientes
     }
 
-    async getCliente(getId: string):Promise<Cliente>{
-        const cliente = await this.clienteModel.findById(getId)
-        return cliente
-    }
-
     async crearCliente(crearClienteDTO:CrearClienteDTO):Promise<Cliente>{
         const cliente = new this.clienteModel(crearClienteDTO)
         return await cliente.save()
@@ -24,10 +19,7 @@ export class ClientesService {
     }
 
     async actualizarCliente(getId: string,crearClienteDTO:CrearClienteDTO):Promise<Cliente>{
-        console.log('log4');
         const cliente = await this.clienteModel.findByIdAndUpdate(getId,crearClienteDTO,{new:true})
-        console.log('log3',cliente);
-        
         return cliente
     }
 

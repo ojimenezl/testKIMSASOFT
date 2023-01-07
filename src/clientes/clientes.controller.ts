@@ -20,7 +20,6 @@ export class ClientesController {
 
     @Post('/crearCliente')
     async crearCliente(@Res() respuesta,@Body() crearClienteDTO:CrearClienteDTO){
-        //console.log('datos ',crearClienteDTO);
         const cliente= await this.clientesService.crearCliente(crearClienteDTO)
         return respuesta.status(HttpStatus.OK).json({
             mensaje:'Cliente Guardado!',
@@ -39,7 +38,7 @@ export class ClientesController {
 
     @Delete('/eliminarCliente/:id')
     eliminarCliente(@Res() respuesta,@Param('id') id){
-        this.clientesService.eliminarCliente
+        this.clientesService.eliminarCliente(id)
         return respuesta.status(HttpStatus.OK).json({
             mensaje:'Cliente Eliminado!'
         })

@@ -10,5 +10,4 @@ export class InicioSesionService {
         const cliente = await this.clienteModel.findOne({nombre: getName,password:password})
         return cliente
     }
-
 }

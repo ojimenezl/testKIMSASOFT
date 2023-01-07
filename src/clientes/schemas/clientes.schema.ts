@@ -1,10 +1,10 @@
 import { Schema } from "mongoose";
 
 export const ClienteSchema = new Schema({
-    nombre: String,
-    apellido:{type:String, required:true} ,
+    nombre: {type:String, required:true},
+    apellido: String,
     edad: Number,
-    password: String,
+    password: {type:String, required:true},
     fechaCreacion:{
         type: Date,
         default: Date.now 

@@ -13,18 +13,36 @@ export class ClientesService {
     }
 
     async crearCliente(crearClienteDTO:CrearClienteDTO):Promise<Cliente>{
-        const cliente = new this.clienteModel(crearClienteDTO)
-        return await cliente.save()
-        
+        try {
+            const cliente = new this.clienteModel(crearClienteDTO)
+            return await cliente.save()          
+        } catch (error) {
+            console.log(error);           
+        }
+               
     }
 
     async actualizarCliente(getId: string,crearClienteDTO:CrearClienteDTO):Promise<Cliente>{
-        const cliente = await this.clienteModel.findByIdAndUpdate(getId,crearClienteDTO,{new:true})
-        return cliente
+        console.log(crearClienteDTO);
+        
+        try {
+            if(crearClienteDTO.nombre!="" && crearClienteDTO.password!=""){
+                const cliente = await this.clienteModel.findByIdAndUpdate(getId,crearClienteDTO,{new:true})
+                console.log('cliete',cliente);
+                
+                return cliente 
+            }
+        } catch (error) {
+            console.log(error);           
+        }
+        
     }
 
     async eliminarCliente(getId: string):Promise<Cliente>{
-        return await this.clienteModel.findByIdAndDelete(getId)
+        try {
+            return await this.clienteModel.findByIdAndDelete(getId)
+        } catch (error) {
+            console.log(error);           
+        }        
     }
-
 }
